@@ -14,12 +14,6 @@ Source for the Twitter bot [@londonmapbot](https://www.twitter.com/londonmapbot)
 
 This repo contains a [GitHub Action](https://github.com/features/actions) that runs on schedule (currently every half-hour). It executes R code that queries [the Mapbox API](https://docs.mapbox.com/api/maps/#static-images) for a satellite image of random co-ordinates in a bounding box roughly around Greater London and within the M25 motorway. The image is posted to [@londonmapbot](https://www.twitter.com/londonmapbot) on Twitter using [{rtweet}](https://docs.ropensci.org/rtweet/), along with a URL for that location on [OpenStreetMap](https://www.openstreetmap.org/).
 
-See also the:
-
-* [blog post](https://www.rostrum.blog/2020/09/21/londonmapbot/)
-* [BotWiki page](https://botwiki.org/bot/londonmapbot/)
-* [the rOpenSci {rtweet} use-case page](https://discuss.ropensci.org/t/a-twitter-bot-with-rtweet-mapbox-and-github-actions/2223).
-
 ## The 'mapbotverse'
 
 Other bots that have taken inspiration from londonmapbot:
@@ -30,18 +24,3 @@ Other bots that have taken inspiration from londonmapbot:
 * [@narrowbotR](https://twitter.com/narrowbotR) by [@mattkerlogue](https://twitter.com/mattkerlogue)
 * [@canberramapbot](https://twitter.com/canberramapbot) by [@rexarski](https://twitter.com/rexarski)
 
-## Quick how to
-
-See [the accompanying blog post](https://www.rostrum.blog/2020/09/21/londonmapbot/) for details, but in short:
-
-1. Create a Twitter account for your bot
-1. Sign up for developer status with [Twitter](https://developer.twitter.com/en/apply-for-access) and [MapBox](https://www.mapbox.com/)
-1. Fork this repo, or click the green '[use this template](https://github.com/matt-dray/londonmapbot/generate)' button
-1. Get your API keys from MapBox and Twitter and add them as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) to your repo
-1. Edit the `lat` and `lon` variables in the `londonmapbot-tweet.R` file to provide a bounding box around your location to sample coordinates from
-1. Adjust the `.github/workflows/londonmapbot.yml` file to adjust [the cron schedule](https://crontab.guru/#0,30_*_*_*_*) if you want
-1. GitHub Actions will recognise the .yml file and execute the code on schedule
-
-# Image credits
-
-Posted images are copyright of Mapbox/OpenStreetMap/Maxar. This information is embedded in every image.
