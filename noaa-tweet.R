@@ -82,9 +82,9 @@ if (df_recent$WVHT >= 1) {
   
   # Post the image to Twitter
   rtweet::post_tweet(
-    status = current_surf,
-    media = temp_file,
-    token = londonmapbot_token
+    status = current_surf
+    # , media = temp_file
+    , token = londonmapbot_token
   )
   
 } else
