@@ -1,11 +1,11 @@
-name: londonmapbot
+name: mkepost
 
 on:
   schedule:
     - cron: '12,42 * * * *'  # every half hour
 
 jobs:
-  londonmapbot-post:
+  mkesurf-post:
     runs-on: macOS-latest
     env:
       TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
@@ -18,5 +18,10 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install rtweet package
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
+      - name: Install readr package
+        run: Rscript -e 'install.packages("readr", dependencies = TRUE)'
+      - name: Install lubridate package
+        run: Rscript -e 'install.packages("lubridate", dependencies = TRUE)'
+         
       - name: Create and post tweet
-        run: Rscript londonmapbot-tweet.R
+        run: Rscript noaa-tweet.R

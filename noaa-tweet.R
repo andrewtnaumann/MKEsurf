@@ -1,6 +1,14 @@
 library(readr)
-library(ggplot2)
 library(lubridate)
+
+# Create Twitter token
+londonmapbot_token <- rtweet::create_token(
+  app = "MKEsurf",
+  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
+  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
+  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
+  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+)
 
 df_import <- readr::read_delim("https://www.ndbc.noaa.gov/data/realtime2/45013.txt", delim = " ")
 
