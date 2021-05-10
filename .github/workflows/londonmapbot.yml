@@ -22,6 +22,8 @@ jobs:
         run: Rscript -e 'install.packages("readr", dependencies = TRUE)'
       - name: Install lubridate package
         run: Rscript -e 'install.packages("lubridate", dependencies = TRUE)'
+      - name: Install lubridate package
+        run: Rscript -e 'install.packages("dplyr", dependencies = TRUE)'
          
       - name: Create and post tweet
         run: Rscript noaa-tweet.R
