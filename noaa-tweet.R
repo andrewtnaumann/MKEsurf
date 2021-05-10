@@ -1,9 +1,14 @@
+rm(list=ls())
+
 library(readr)
 library(lubridate)
+library(dplyr)
+library(rtweet)
+library(stringr)
 
 # Create Twitter token
 londonmapbot_token <- rtweet::create_token(
-  app = "MKEsurf",
+  app = "mkesurf",
   consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
   consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
   access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
@@ -73,11 +78,11 @@ df_recent <- df_vars %>%
 if (df_recent$WVHT >= 1) {
   
   current_surf <- str_c(strftime(df_recent$date - hours(5)),":"," Waves "
-                        , round(df_recent$WVHT *3.28, 2), " feet at ", df_recent$DPD
+                        , round(df_recent$WVHT *3.28, 0), " feet at ", df_recent$DPD
                         , " seconds. ", df_recent$rose, " wind at "
-                        , df_recent$WSPD*1.15, " mph. ", " Water temp: "
-                        , (df_recent$` WTMP` * (9/5))  + 32, " degrees. ", " Air temp: "
-                        , (df_recent$` ATMP` * (9/5))  + 32, " degrees. #milwaukee #surf")
+                        , round(df_recent$WSPD*1.15, 0), " mph. ", " Water temp: "
+                        , round((df_recent$` WTMP` * (9/5))  + 32, 0), " degrees. ", " Air temp: "
+                        , round((df_recent$` ATMP` * (9/5))  + 32, 0), " degrees. #milwaukee #surf")
   current_surf
   
   # Post the image to Twitter
@@ -89,5 +94,4 @@ if (df_recent$WVHT >= 1) {
   
 } else
 {
-  stop()
 }
