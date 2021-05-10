@@ -2,7 +2,7 @@ name: mkepost
 
 on:
   schedule:
-    - cron: '12,42 * * * *'  # every half hour
+    - cron: '15 */2 * * *'  # every hour
 
 jobs:
   mkesurf-post:
