@@ -1,7 +1,7 @@
 rm(list=ls())
 
 # Create Twitter token
-londonmapbot_token <- create_token(
+londonmapbot_token <- rtweet::create_token(
   app = "mkesurf",
   consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
   consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
@@ -13,7 +13,7 @@ londonmapbot_token <- create_token(
 surf_wv_ht <- 1 # meter
 surf_wv_per <- 5 # seconds
 
-df_vars <- read_delim("https://www.ndbc.noaa.gov/data/realtime2/45013.txt", delim = " ") %>%
+df_vars <- readr::read_delim("https://www.ndbc.noaa.gov/data/realtime2/45013.txt", delim = " ") %>%
   # save only columns we want and rename some columns
   select('#YY', ' MM', 'DD', 'hh', 'mm', 'WDIR', 'WSPD', 'GST', 'WVHT' = ' WVHT', 'DPD' = '  DPD',
          ' WTMP', ' ATMP') %>%
@@ -63,7 +63,7 @@ df_recent <- df_vars %>%
 # is there is surf within the past hour, send a text
 if (df_recent$WVHT >= 1) {
   
-  current_surf <- str_c(strftime(df_recent$date - hours(5)),":"," Waves "
+  current_surf <- stringr::str_c(strftime(df_recent$date - hours(5)),":"," Waves "
                         , round(df_recent$WVHT *3.28, 0), " feet at ", df_recent$DPD
                         , " seconds. ", df_recent$rose, " wind at "
                         , round(df_recent$WSPD*1.15, 0), " mph. ", " Water temp: "
@@ -71,7 +71,7 @@ if (df_recent$WVHT >= 1) {
                         , round((df_recent$` ATMP` * (9/5))  + 32, 0), " degrees. #milwaukee #surf")
   
   # Post the image to Twitter
-  post_tweet(
+  rtweet::post_tweet(
     status = current_surf
     # , media = temp_file
     , token = londonmapbot_token
