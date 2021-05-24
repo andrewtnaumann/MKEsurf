@@ -1,6 +1,7 @@
 rm(list=ls())
 
 library(dplyr)
+library(lubridate)
 
 # Create Twitter token
 londonmapbot_token <- rtweet::create_token(
