@@ -11,4 +11,4 @@ Source for the Twitter bot [@MKEsurf](https://www.twitter.com/MKEsurf). It posts
 
 # What
 
-This repo contains a [GitHub Action](https://github.com/features/actions) that runs on schedule (currently every half-hour). It executes R code that queries [Station 45013 - Atwater, WI](https://www.ndbc.noaa.gov/station_page.php?station=45013) for current lake meteorlogical observations and posts the conditions when the most recent wave hieght exceeds 3 feet. The tweet is posted to [@mkesurf](https://www.twitter.com/mkesurf) on Twitter using [{rtweet}](https://docs.ropensci.org/rtweet/). 
+This repo contains a [GitHub Action](https://github.com/features/actions) that runs on schedule (currently every half-hour). It executes R code that queries [Station 45013 - Atwater, WI](https://www.ndbc.noaa.gov/station_page.php?station=45013) for current lake meteorlogical observations and posts the conditions when the most recent wave height exceeds 3 feet. The tweet is posted to [@mkesurf](https://www.twitter.com/mkesurf) on Twitter using [{rtweet}](https://docs.ropensci.org/rtweet/). 
